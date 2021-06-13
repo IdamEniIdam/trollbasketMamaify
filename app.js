@@ -7,6 +7,7 @@ const path = require("path");
 const cors = require("cors");
 const os = require("os");
 const fs = require("fs");
+// const DATABASEconnection  = require("./dbConnection")
 
 const networkInterfaces = os.networkInterfaces();
 // const ip = networkInterfaces.Ethernet[1].address;
@@ -25,7 +26,8 @@ const notification = require("./middlewares/pushNotification");
 //Connect to DB
 // const dbURI = process.env + "mongodb://localhost:27017/TrollBasket";
 
-const dbURI = process.env + "mongodb+srv://mamaifyTrollbasket:AlmightyGodid89$$$$@cluster0.9bsf0.mongodb.net/test";
+const dbURI = "mongodb+srv://mamaifyTrollbasket:AlmightyGodid89$$$$@cluster0.9bsf0.mongodb.net/test";
+// const dbURI = DATABASEconnection;
 
 mongoose.connect(
   dbURI,

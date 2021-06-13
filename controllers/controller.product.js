@@ -34,8 +34,8 @@ const product_get = (req, res) => {
 const product_post = (req, res) => {
   // const host = process.env.HOST_NAME;
   const host = 'http://192.168.43.154:5000';
-  const filename = req.body.filename.replace(/ +/g, " ");
-  // const filename = (!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
+  // const filename = req.body.filename.replace(/ +/g, " ");
+  const filename = (!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
 
   if (!req.body || !req.file) {
     return res.status(200).send({

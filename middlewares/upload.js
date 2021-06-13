@@ -3,10 +3,12 @@ const sharp = require("sharp");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    // const filename = (!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
     cb(null, "./public/api/static/images/productPictures");
   },
   filename: function (req, file, cb) {
     cb(null, req.body.filename.replace(/ +/g, "") + ".jpg");
+    // cb(!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
   },
 });
 const fileFilter = (req, file, cb) => {
