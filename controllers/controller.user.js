@@ -154,7 +154,7 @@ const user_edit = (req, res) => {
 
 const user_photoUpload = (req, res) => {
   // const host = process.env.HOST_NAME;
-  const host =  'http://192.168.43.154:5000';
+  const host =  'https://mamaifytrollbasket.herokuapp.com';
   const { id } = req.params;
   console.log(req.body);
 
