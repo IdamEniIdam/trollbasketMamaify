@@ -38,7 +38,7 @@ mongoose.connect(
     useCreateIndex: true,
   },
   () => {
-    app.listen(process.env.PORT, ip);
+    // app.listen(process.env.PORT, ip);
     // app.listen(process.env.PORT);
     let dirPath = path.join(
       __dirname,
