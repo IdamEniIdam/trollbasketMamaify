@@ -167,7 +167,7 @@ const user_photoUpload = (req, res) => {
     });
   } else {
     const imageUrl =
-      // host + 
+      host + 
       '/public/api/static/images/userprofile/' + id + '.jpg';
     User.findOneAndUpdate({ _id: id }, { profilePicture: imageUrl })
       .then((result) => {

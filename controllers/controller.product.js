@@ -47,10 +47,10 @@ const product_post = (req, res) => {
   }
 
   const imageUrl =
-    // host +
+    host +
      "/public/api/static/images/productPictures/" + filename + ".jpg";
   const resizeUrl =
-    // host +
+    host +
     "/public/api/static/images/productPictures/" +
     "256x144-" +
     filename +
@@ -104,10 +104,10 @@ const product_update = async (req, res) => {
   if (req.file) {
     filename = await req.body.filename.replace(/\+/g," ") ;
     imageUrl =
-      // host +
+      host +
        "/public/api/static/images/productPictures/" + filename + ".jpg";
     resizeUrl =
-      // host +
+      host +
       "/public/api/static/images/productPictures/" +
       "256x144-" +
       filename +
