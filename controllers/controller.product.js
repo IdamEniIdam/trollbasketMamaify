@@ -33,8 +33,8 @@ const product_get = (req, res) => {
 
 const product_post = (req, res) => {
   // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
-  // const host = 'https://mamaifytrollbasket.herokuapp.com/api';
+  // const host = 'http://192.168.43.154:5000';
+  const host = 'https://mamaifytrollbasket.herokuapp.com/api';
   const filename = req.body.filename.replace(/ +/g, " ");
   // const filename = (!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
 
@@ -47,9 +47,10 @@ const product_post = (req, res) => {
   }
 
   const imageUrl =
-    host + "/public/api/static/images/productPictures/" + filename + ".jpg";
+    // host +
+     "/public/api/static/images/productPictures/" + filename + ".jpg";
   const resizeUrl =
-    host +
+    // host +
     "/public/api/static/images/productPictures/" +
     "256x144-" +
     filename +
@@ -88,8 +89,8 @@ const product_post = (req, res) => {
 const product_update = async (req, res) => {
   const id = req.params.id;
   // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
-  // const host =  'https://mamaifytrollbasket.herokuapp.com/api';
+  // const host = 'http://192.168.43.154:5000';
+  const host =  'https://mamaifytrollbasket.herokuapp.com/api';
   let filename = "";
   let imageUrl = "";
   let resizeUrl = "";
@@ -103,9 +104,10 @@ const product_update = async (req, res) => {
   if (req.file) {
     filename = await req.body.filename.replace(/\+/g," ") ;
     imageUrl =
-      host + "/public/api/static/images/productPictures/" + filename + ".jpg";
+      // host +
+       "/public/api/static/images/productPictures/" + filename + ".jpg";
     resizeUrl =
-      host +
+      // host +
       "/public/api/static/images/productPictures/" +
       "256x144-" +
       filename +

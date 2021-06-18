@@ -154,8 +154,8 @@ const user_edit = (req, res) => {
 
 const user_photoUpload = (req, res) => {
   // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
-  // const host =  'https://mamaifytrollbasket.herokuapp.com/api';
+  // const host = 'http://192.168.43.154:5000';
+  const host =  'https://mamaifytrollbasket.herokuapp.com/api';
   const { id } = req.params;
   console.log(req.body);
 
@@ -167,7 +167,8 @@ const user_photoUpload = (req, res) => {
     });
   } else {
     const imageUrl =
-      host + '/public/api/static/images/userprofile/' + id + '.jpg';
+      // host + 
+      '/public/api/static/images/userprofile/' + id + '.jpg';
     User.findOneAndUpdate({ _id: id }, { profilePicture: imageUrl })
       .then((result) => {
         return res.status(200).send('Uploaded profile picture');
