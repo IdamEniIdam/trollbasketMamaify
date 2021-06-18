@@ -33,8 +33,8 @@ const product_get = (req, res) => {
 
 const product_post = (req, res) => {
   // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
-  // const host = 'https://mamaifytrollbasket.herokuapp.com/api';
+  // const host = 'http://192.168.43.154:5000';
+  const host = 'https://mamaifytrollbasket.herokuapp.com/api/product/post';
   const filename = req.body.filename.replace(/ +/g, " ");
   // const filename = (!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
 
@@ -69,7 +69,6 @@ const product_post = (req, res) => {
   return product
     .save()
     .then((data) => {
-      console.log('ffhhf', data)
       return res.status(200).send({
         status: "OK",
         message: "Added Product Successfully",
@@ -89,8 +88,8 @@ const product_post = (req, res) => {
 const product_update = async (req, res) => {
   const id = req.params.id;
   // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
-  // const host =  'https://mamaifytrollbasket.herokuapp.com/api';
+  // const host = 'http://192.168.43.154:5000';
+  const host =  'https://mamaifytrollbasket.herokuapp.com/api/product/post';
   let filename = "";
   let imageUrl = "";
   let resizeUrl = "";

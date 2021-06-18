@@ -45,11 +45,11 @@ app.listen(port, () => console.log(`Server running on port ${port}`));
     // app.listen(process.env.PORT);
     let dirPath = path.join(
       __dirname,
-      "public/api/static/images/productPictures"
+      "/public/api/static/images/productPictures/"
     );
     let dirPathUser = path.join(
       __dirname,
-      "public/api/static/images/userprofile"
+      "/public/api/static/images/userprofile/"
     );
     createDir(dirPath);
     createDir(dirPathUser);
