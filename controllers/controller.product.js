@@ -33,10 +33,10 @@ const product_get = (req, res) => {
 
 const product_post = (req, res) => {
   // const host = process.env.HOST_NAME;
-  // const host = 'http://192.168.43.154:5000';
-  const host = 'https://mamaifytrollbasket.herokuapp.com';
-  // const filename = req.body.filename.replace(/ +/g, " ");
-  const filename = (!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
+  const host = 'http://192.168.43.154:5000';
+  // const host = 'https://mamaifytrollbasket.herokuapp.com/api';
+  const filename = req.body.filename.replace(/ +/g, " ");
+  // const filename = (!isNaN(req.body.filename)) ? req.body.filename.replace(/\+/g," ") : null;
 
   if (!req.body || !req.file) {
     return res.status(200).send({
@@ -69,6 +69,7 @@ const product_post = (req, res) => {
   return product
     .save()
     .then((data) => {
+      console.log('ffhhf', data)
       return res.status(200).send({
         status: "OK",
         message: "Added Product Successfully",
@@ -88,7 +89,8 @@ const product_post = (req, res) => {
 const product_update = async (req, res) => {
   const id = req.params.id;
   // const host = process.env.HOST_NAME;
-  const host =  'https://mamaifytrollbasket.herokuapp.com';
+  const host = 'http://192.168.43.154:5000';
+  // const host =  'https://mamaifytrollbasket.herokuapp.com/api';
   let filename = "";
   let imageUrl = "";
   let resizeUrl = "";
@@ -100,7 +102,7 @@ const product_update = async (req, res) => {
     });
   }
   if (req.file) {
-    filename = await req.body.filename.replace(/ +/g, "");
+    filename = await req.body.filename.replace(/\+/g," ") ;
     imageUrl =
       host + "/public/api/static/images/productPictures/" + filename + ".jpg";
     resizeUrl =
