@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const getPasswordResetURL = (user, token) =>
-  `https://mamaifytrollbasket.herokuapp.com/expo?userid=${user._id}&token=${token}`;
+  `https://mamaifytrollbasket.herokuapp.com/api/expo?userid=${user._id}&token=${token}`;
 
 const resetPasswordTemplate = (user, url) => {
   const from = process.env.EMAIL_LOGIN;

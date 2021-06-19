@@ -43,14 +43,15 @@ const product_post = (req, res) => {
       status: "ERR_REQUEST",
       message: "Please check your request!",
       content: null,
+
     });
   }
 
   const imageUrl =
-    // host +
+    host +
      "/public/api/static/images/productPictures/" + filename + ".jpg";
   const resizeUrl =
-    // host +
+    host +
     "/public/api/static/images/productPictures/" +
     "256x144-" +
     filename +
