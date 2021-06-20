@@ -6,7 +6,8 @@ const auth = (req, res, next) => {
     return res.status(401).send({ err: "Token is expired" });
   }
   try {
-    jwt.verify(token, process.env.SECRET_TOKEN);
+    // jwt.verify(token, process.env.SECRET_TOKEN);
+    jwt.verify(token, 'Drmhze6EPcv0fN_81Bj-nAq241aA1');
     next();
   } catch (err) {
     res.status(400).send({ err: "Invalid Token" });

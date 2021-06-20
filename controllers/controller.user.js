@@ -196,7 +196,7 @@ const user_resetpw = async (req, res) => {
   const sendEmail = () => {
     transporter.sendMail(emailTemplate, (err, info) => {
       if (err) {
-        res.status(500).send({ err: 'Error sending email' });
+        res.status(500).send({ err: 'Error sending email..' });
       } else {
         console.log(`** Email sent **`, info);
         res.send({ res: 'Sent reset Email' });

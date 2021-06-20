@@ -1,11 +1,15 @@
 const nodemailer = require("nodemailer");
 
+//  EMAIL_LOGIN = 'idameni89@gmail.com';
+//  EMAIL_PASSWORD = 'AlmightyGodid89';
+
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   secure: true,
   auth: {
-    user: process.env.EMAIL_LOGIN,
-    pass: process.env.EMAIL_PASSWORD,
+    user: 'idameni89@gmail.com',
+    pass: 'AlmightyGodid89',
+   
   },
 });
 
@@ -13,9 +17,9 @@ const getPasswordResetURL = (user, token) =>
   `https://mamaifytrollbasket.herokuapp.com/api/expo?userid=${user._id}&token=${token}`;
 
 const resetPasswordTemplate = (user, url) => {
-  const from = process.env.EMAIL_LOGIN;
+  const from = 'idameni89@gmail.com';
   const to = user.email;
-  const subject = "🍀 CatTuong Password Reset 🍀";
+  const subject = "🍀 Mamaify Password Reset 🍀";
   const html = ` 
   <p>Dear, ${user.name || user.email},</p>
   <p>Did you forget your password ?</p>
@@ -24,7 +28,7 @@ const resetPasswordTemplate = (user, url) => {
   <p>This link will expire in 15 minutes and can be used only once.</p>
   <p>If you don't want to change your password, please ignore and delete this message! </p>
   <p>Thank you,</p>
-  <p>Your friend CatTuong 🍀</p>
+  <p>Your friend MamaIfy 🍀</p>
   <img src="https://i.imgur.com/kST2Gn4.png" alt="logo" width="500" height="160" > 
   `;
 
@@ -32,7 +36,7 @@ const resetPasswordTemplate = (user, url) => {
 };
 
 const registerUserTemplate = (user) => {
-  const from = process.env.EMAIL_LOGIN;
+  const from = 'idameni89@gmail.com';
   const to = user.email;
   const subject = "🍀 Đăng Ký Tài Khoản Thành Công 🍀";
   const html = `
@@ -49,7 +53,7 @@ const registerUserTemplate = (user) => {
 };
 
 const sendUserOrderTemplate = (data, user) => {
-  const from = process.env.EMAIL_LOGIN;
+  const from = 'idameni89@gmail.com';
   const to = user.email;
   const subject = "🍀 Đặt hàng thành công, thông tin đơn hàng của bạn 🍀";
   const html = `
