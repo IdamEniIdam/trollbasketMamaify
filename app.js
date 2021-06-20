@@ -24,13 +24,13 @@ const authRoute = require("./routes/auth");
 const notification = require("./middlewares/pushNotification");
 
 //Connect to DB
-// const MONGO_URI = process.env + "mongodb://localhost:27017/TrollBasket";
+// const dbURI = process.env + "mongodb://localhost:27017/TrollBasket";
 
-const MONGO_URI = "mongodb+srv://idameniidam:AlmightyGodid89@cluster0.g3vir.mongodb.net/test";
+const dbURI = "mongodb+srv://idameniidam:AlmightyGodid89@cluster0.g3vir.mongodb.net/test";
 // const dbURI = DATABASEconnection;
 
 mongoose.connect(
-  MONGO_URI,
+  dbURI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -41,8 +41,8 @@ mongoose.connect(
     const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
-    // app.listen(process.env.PORT, ip);
-    app.listen(process.env.PORT);
+    app.listen(process.env.PORT, ip);
+    // app.listen(process.env.PORT);
     let dirPath = path.join(
       __dirname,
       "/public/api/static/images/productPictures/"
