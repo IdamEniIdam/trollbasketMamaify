@@ -24,7 +24,7 @@ const authRoute = require("./routes/auth");
 const notification = require("./middlewares/pushNotification");
 
 //Connect to DB
-// const dbURI = process.env + "mongodb://localhost:27017/TrollBasket";
+// const MONGO_URI = process.env + "mongodb://localhost:27017/TrollBasket";
 
 const MONGO_URI = "mongodb+srv://idameniidam:AlmightyGodid89@cluster0.g3vir.mongodb.net/test";
 // const dbURI = DATABASEconnection;
