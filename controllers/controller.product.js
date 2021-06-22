@@ -70,7 +70,6 @@ const product_post = (req, res) => {
   return product
     .save()
     .then((data) => {
-      console.log("dtatats::", data)
       return res.status(200).send({
         status: "OK",
         message: "Added Product Successfully",
