@@ -77,7 +77,10 @@ const user_login = async (req, res) => {
   ) {
     jwt.sign(
       { name: 'admin' },
-      process.env.SECRET_TOKEN,
+
+      "b3Xxy0Mqa4oYGv96yUhnlx",
+      // process.env.SECRET_TOKEN,
+
       { expiresIn: '3600s' },
       (err, token) => {
         if (err) {
@@ -115,7 +118,8 @@ const user_login = async (req, res) => {
     try {
       jwt.sign(
         { userId: user._id },
-        process.env.SECRET_TOKEN,
+        "b3Xxy0Mqa4oYGv96yUhnlx",
+        // process.env.SECRET_TOKEN,
         { expiresIn: '3600s' },
         (err, token) => {
           if (err) {
@@ -155,7 +159,6 @@ const user_edit = (req, res) => {
 const user_photoUpload = (req, res) => {
   // const host = process.env.HOST_NAME;
   const host = 'http://192.168.43.154:5000';
-  // const host =  'https://mamaifytrollbasket.herokuapp.com/api';
   const { id } = req.params;
   console.log(req.body);
 
@@ -180,7 +183,7 @@ const user_photoUpload = (req, res) => {
 };
 
 const user_resetpw = async (req, res) => {
-  const email = req.body.email.toLowerCase();
+  const email = req.body.email;
   if (!email) {
     return res.status(400).send({ err: 'Email is wrong' });
   }
