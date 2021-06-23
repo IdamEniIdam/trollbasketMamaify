@@ -26,7 +26,7 @@ const notification = require("./middlewares/pushNotification");
 //Connect to DB
 // const dbURI = process.env + "mongodb://localhost:27017/TrollBasket";
 
-// const dbURI = "mongodb+srv://idameniidam:AlmightyGodid89@cluster0.g3vir.mongodb.net/test";
+const dbURI = "mongodb+srv://idameniidam:AlmightyGodid89@cluster0.g3vir.mongodb.net/test";
 // const dbURI = DATABASEconnection;
 
 mongoose.connect(
