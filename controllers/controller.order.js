@@ -1,7 +1,8 @@
 const Order = require("../models/order");
 const User = require("../models/user");
 const pushNotification = require("../middlewares/pushNotification");
-const stripe = require("stripe")(process.env.STIPE_SECRET_TOKEN);
+// const stripe = require("stripe")(process.env.STIPE_SECRET_TOKEN);
+const stripe = require("stripe")("pk_test_OHkUW0RObAHdwnJAIUFhPxhE");
 const { v4: uuidv4 } = require("uuid");
 const {
   transporter,
@@ -41,8 +42,8 @@ const order_post = async (req, res) => {
     });
   }
   let content = {
-    title: "Cập nhật đơn hàng",
-    body: `Đơn hàng của bạn đã được đặt thành công.`,
+    title: "Update order",
+    body: `Your order has been placed successfully.`,
   };
 
   const order = new Order(req.body.orderInfo);
@@ -51,7 +52,7 @@ const order_post = async (req, res) => {
     try {
       stripe.charges.create({
         amount: totalAmount,
-        currency: "usd",
+        currency: "ngn",
         description: `Order Items: ${orders}`,
         source: token.id,
       });
@@ -65,9 +66,9 @@ const order_post = async (req, res) => {
     pushNotification(user.pushTokens, content, "");
     transporter.sendMail(sendUserOrderTemplate(resOrder, user), (err, info) => {
       if (err) {
-        res.status(500).send({ err: "Error sending email" });
+        res.status(401).send({ err: "Error sending email" });
       } else {
-        console.log(`** Email sent **`, info);
+        // console.log(`** Email sent **`, info);
       }
     });
     res.status(200).send({
@@ -94,8 +95,8 @@ const order_update = async (req, res) => {
     });
   }
   let content = {
-    title: "Cập nhật đơn hàng",
-    body: `Đơn hàng ${id.substr(id.length - 10)} đã được ${updateStatus}.`,
+    title: "Update order",
+    body: `Order ${id.substr(id.length - 10)} was ${updateStatus}.`,
   };
   try {
     const resOrder = await Order.findByIdAndUpdate(id, {

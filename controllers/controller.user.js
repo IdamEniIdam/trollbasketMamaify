@@ -42,7 +42,7 @@ const user_register = async (req, res) => {
     const sendEmail = () => {
       transporter.sendMail(registerUserTemplate(resUser), (err, info) => {
         if (err) {
-          // console.log(`** Email sent **`, json(info));
+          // console.log(`** Email sent **`, res.status(200).json(info));
           res.status(200).json(info);
           console.log(`** Email sent **`);
           // res.status(500).send({ err: 'Error sending email' });
@@ -61,7 +61,8 @@ const user_register = async (req, res) => {
 
 const user_login = async (req, res) => {
   const { error } = loginValidation(req.body);
-  const email = req.body.email.toLowerCase();
+  // const email = req.body.email.toLowerCase();
+  const email = req.body.email;
   const { password } = req.body;
   const pushTokens = req.body.pushTokens;
 
@@ -70,17 +71,12 @@ const user_login = async (req, res) => {
   }
   //admin login
   if (
-    // email === process.env.DEFAULT_ADMINNAME &&
-    // password === process.env.DEFAULT_PASSWORD
-    email === 'idameni89@gmail.com' &&
-    password === 'AlmightyGodid89'
+    email === process.env.DEFAULT_ADMINNAME &&
+    password === process.env.DEFAULT_PASSWORD
   ) {
     jwt.sign(
       { name: 'admin' },
-
-      "b3Xxy0Mqa4oYGv96yUhnlx",
-      // process.env.SECRET_TOKEN,
-
+      process.env.SECRET_TOKEN,
       { expiresIn: '3600s' },
       (err, token) => {
         if (err) {
@@ -118,8 +114,7 @@ const user_login = async (req, res) => {
     try {
       jwt.sign(
         { userId: user._id },
-        "b3Xxy0Mqa4oYGv96yUhnlx",
-        // process.env.SECRET_TOKEN,
+        process.env.SECRET_TOKEN,
         { expiresIn: '3600s' },
         (err, token) => {
           if (err) {
@@ -157,8 +152,7 @@ const user_edit = (req, res) => {
 };
 
 const user_photoUpload = (req, res) => {
-  // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
+  const host = process.env.HOST_NAME;
   const { id } = req.params;
   console.log(req.body);
 
@@ -200,6 +194,7 @@ const user_resetpw = async (req, res) => {
     transporter.sendMail(emailTemplate, (err, info) => {
       if (err) {
         res.status(500).send({ err: 'Error sending email..' });
+        console.log("errrrrr::", err)
       } else {
         console.log(`** Email sent **`, info);
         res.send({ res: 'Sent reset Email' });

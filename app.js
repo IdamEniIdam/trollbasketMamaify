@@ -7,13 +7,12 @@ const path = require("path");
 const cors = require("cors");
 const os = require("os");
 const fs = require("fs");
-// const DATABASEconnection  = require("./dbConnection")
 
 const networkInterfaces = os.networkInterfaces();
 // const ip = networkInterfaces.Ethernet[1].address;
 const ip = networkInterfaces;
 //config
-require("dotenv");
+require("dotenv/config");
 
 //import routes
 const productRoute = require("./routes/product");
@@ -24,11 +23,7 @@ const authRoute = require("./routes/auth");
 const notification = require("./middlewares/pushNotification");
 
 //Connect to DB
-// const dbURI = process.env + "mongodb://localhost:27017/TrollBasket";
-
-const dbURI = "mongodb+srv://idameniidam:AlmightyGodid89@cluster0.g3vir.mongodb.net/test";
-// const dbURI = DATABASEconnection;
-
+const dbURI = process.env.DB_CONNECTION;
 mongoose.connect(
   dbURI,
   {
@@ -38,11 +33,7 @@ mongoose.connect(
     useCreateIndex: true,
   },
   () => {
-    const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
-    // app.listen(process.env.PORT, ip);
-    // app.listen(process.env.PORT);
+    app.listen(process.env.PORT, ip);
     let dirPath = path.join(
       __dirname,
       "/public/api/static/images/productPictures/"
@@ -54,6 +45,7 @@ app.listen(port, () => console.log(`Server running on port ${port}`));
     createDir(dirPath);
     createDir(dirPathUser);
     console.log("Connected to DB");
+    console.log("Sever runing on port", process.env.PORT);
   }
 );
 
@@ -87,16 +79,11 @@ app.get("/expo", (req, res) => {
   });
   res.end();
 });
-// app.use(`/api/${process.env.VERSION}/product`, productRoute);
-app.use(`/api/product`, productRoute);
-// app.use(`/api/${process.env.VERSION}/cart`, cartRoute);
-app.use(`/api/cart`, cartRoute);
-// app.use(`/api/${process.env.VERSION}/order`, orderRoute);
-app.use(`/api/order`, orderRoute);
-// app.use(`/api/${process.env.VERSION}/favoritelist`, favoriteRoute);
-app.use(`/api/favoritelist`, favoriteRoute);
-// app.use(`/api/${process.env.VERSION}/user`, authRoute);
-app.use(`/api/user`, authRoute);
+app.use(`/api/${process.env.VERSION}/product`, productRoute);
+app.use(`/api/${process.env.VERSION}/cart`, cartRoute);
+app.use(`/api/${process.env.VERSION}/order`, orderRoute);
+app.use(`/api/${process.env.VERSION}/favoritelist`, favoriteRoute);
+app.use(`/api/${process.env.VERSION}/user`, authRoute);
 app.use(`/api/notification`, notification);
 
 

@@ -32,9 +32,10 @@ const product_get = (req, res) => {
 };
 
 const product_post = (req, res) => {
-  // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
-  const filename = req.body.filename.replace(/\+/g," ");
+  const host = process.env.HOST_NAME;
+  const filename = req.body.filename
+                   ? req.body.filename.replace(/\+/g," ")
+                   : "File name is empty";
 
   if (!req.body || !req.file) {
     return res.status(200).send({
@@ -88,8 +89,7 @@ const product_post = (req, res) => {
 // eslint-disable-next-line consistent-return
 const product_update = async (req, res) => {
   const id = req.params.id;
-  // const host = process.env.HOST_NAME;
-  const host = 'http://192.168.43.154:5000';
+  const host = process.env.HOST_NAME;
   let filename = "";
   let imageUrl = "";
   let resizeUrl = "";

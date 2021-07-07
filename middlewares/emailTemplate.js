@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   secure: true,
   auth: {
-    user: 'idameni89@gmail.com',
-    pass: 'AlmightyGodid89',
+    user: process.env.EMAIL_LOGIN,
+    pass: process.env.EMAIL_PASSWORD,
    
   },
 });
@@ -16,7 +16,7 @@ const getPasswordResetURL = (user, token) =>
   `http://192.168.43.154:5000/expo?userid=${user._id}&token=${token}`;
 
 const resetPasswordTemplate = (user, url) => {
-  const from = 'idameni89@gmail.com';
+  const from = process.env.EMAIL_LOGIN;
   const to = user.email;
   const subject = "🍀 Mamaify Password Reset 🍀";
   const html = ` 
@@ -35,16 +35,16 @@ const resetPasswordTemplate = (user, url) => {
 };
 
 const registerUserTemplate = (user) => {
-  const from = 'idameni89@gmail.com';
+  const from = process.env.EMAIL_LOGIN;
   const to = user.email;
-  const subject = "🍀 Đăng Ký Tài Khoản Thành Công 🍀";
+  const subject = "🍀 Account Registration Successfully 🍀";
   const html = `
   <p>Dear, ${user.name} </p>
   <p>Thank you for registering for shopping at our store </p>
   <p>Your username is: ${user.email} </p>
   <p>If you have any questions please contact support</p>
   <p>Best regards,</p>
-  <p>Your friend CatTuong 🍀</p>
+  <p>Your friend Mamaify 🍀</p>
   <img src="https://i.imgur.com/kST2Gn4.png" alt="logo" width="500" height="60" > 
   `;
 
@@ -52,9 +52,9 @@ const registerUserTemplate = (user) => {
 };
 
 const sendUserOrderTemplate = (data, user) => {
-  const from = 'idameni89@gmail.com';
+  const from = process.env.EMAIL_LOGIN;
   const to = user.email;
-  const subject = "🍀 Đặt hàng thành công, thông tin đơn hàng của bạn 🍀";
+  const subject = "🍀 Order successfully, your order information 🍀";
   const html = `
   
   <p>Dear, Customer </p>
@@ -65,7 +65,7 @@ const sendUserOrderTemplate = (data, user) => {
   <p>We will check your order and confirm it as soon as possible</p>
   <p>Thanks for choosing our store </p>
   <p>Warm hugs,</p>
-  <p>Your friend CatTuong 🍀</p>
+  <p>Your friend Mamaify 🍀</p>
   <img src="https://i.imgur.com/kST2Gn4.png" alt="logo" width="500" height="60" > 
   `;
 
